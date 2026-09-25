@@ -1,67 +1,26 @@
-/**
- * 02 - TIPOS DE DATOS
- *
- * Ejecutar:  npm run play -- src/02-tipos-datos/demo.ts
- */
-
-// ---------- Primitivos ----------
-let nombre: string = "Carlos Mendoza";
-let edad: number = 18.2; // number cubre enteros y decimales
-let mayorEdad: boolean = true;
-
-console.log(nombre, edad, mayorEdad);
-
-// ---------- Inferencia ----------
-// Si inicializas al declarar, NO hace falta anotar el tipo: TS lo deduce.
-let ciudad = "Sevilla"; // inferido: string
-// ciudad = 3;          // Error: Type 'number' is not assignable to type 'string'.
-console.log(`ciudad inferida como string -> ${ciudad}`);
-
-// ---------- any: desactiva el chequeo ----------
-let cualquierCosa: any = "Hola";
-cualquierCosa = 2;
-cualquierCosa = true;
-cualquierCosa = "HOLA";
-
-// Compila, pero si el valor no fuese string reventaría en EJECUCIÓN.
-// `any` es una puerta trasera: evítalo.
-console.log(cualquierCosa.toLowerCase());
-
-// ---------- unknown: el "any seguro" ----------
-let tipoDatoDesconocido: unknown;
-
-tipoDatoDesconocido = "Nombre";
-tipoDatoDesconocido = 18;
-tipoDatoDesconocido = "Ahora soy texto";
-
-// console.log(tipoDatoDesconocido.toUpperCase());  // Error: 'tipoDatoDesconocido' is of type 'unknown'.
-
-// Hay que comprobar el tipo antes de usarlo (type guard / narrowing):
-if (typeof tipoDatoDesconocido === "string") {
-  console.log(tipoDatoDesconocido.toUpperCase()); // aquí TS ya sabe que es string
+let texto:string="Mario";
+let texto2="Rodriguez"
+let numerodouble:number=1.2;
+let entero:number=1
+let cualquiercosa:any="jose";//Esto se puede poner porque es explicita
+let booleano:boolean=true;
+console.log(cualquiercosa.toUpperCase());
+let desconocido:unknown=3;//Hay que hacer comprobación previa
+if (typeof(desconocido)==="string") {
+  console.log(desconocido.toUpperCase());
+}else{console.log("No es string");
 }
+let nda:unknown="Mario"
 
-// ---------- void y never ----------
-// void: la función no devuelve nada.
-function avisar(mensaje: string): void {
-  console.log(`AVISO: ${mensaje}`);
+let nulo:string|null=null;//Para no poner un tipo string vacio "" y posteriormente asignarle valor string|null, en este caso si tiene valor el valor NULL es algo
+let indefinida:undefined|string;//Lo mismo que null pero en este caso es indefinida no tiene ningun valor
+//concatenación de variables
+console.log("Hola "+1+1+" Mario "+`${1+1}`+" "+`${entero}`);//``se utiliza para concatenar diferentes tipos de variables por ejemplo para que no salga 11 y salga 2 o para añadir variables directamente
+console.log(10**3);
+//definir interfaz
+interface Usuario {
+  nombre:string;
+  edad:number;
+  dni?:string;//El usuario puede o no el dni, ? indica opcionalidad
 }
-avisar("void = sin valor de retorno");
-
-// never: la función nunca termina normalmente (lanza o bucle infinito).
-function lanzarError(msg: string): never {
-  throw new Error(msg);
-}
-
-// ---------- null y undefined ----------
-// Con "strict": true hay que declararlos explícitamente en el tipo.
-let apellido: string | null = null;
-apellido = "García";
-console.log(`apellido -> ${apellido}`);
-
-// ---------- Concatenar cadenas ----------
-console.log("Tu nombre es: " + nombre); // concatenación clásica
-console.log(`Tu nombre es ${nombre}`); // template literal (preferido)
-console.log(`El año que viene tendrás ${Math.floor(edad) + 1} años`);
-
-export {};
+let u1:Usuario={nombre:"Mario",edad:23}
