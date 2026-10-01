@@ -81,4 +81,8 @@ console.log("desestructurando array ->", primero, segundo);
 const { nombre: nombreUsuario, edad: edadUsuario } = base;
 console.log("desestructurando objeto ->", nombreUsuario, edadUsuario);
 
+
+
+
+
 export {};
