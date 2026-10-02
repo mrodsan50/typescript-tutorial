@@ -66,4 +66,27 @@ numeros.forEach((valor: number) => {
 
 console.log(numeros.map((num:number)=>{return num=88}));
 //.filter filtra para encontrar por el filtrado 
+type p = {nombre:string, edad:number}
+
+let p1 ={nombre:"mario", edad:23};
+let p2 ={nombre:"paco", edad:22};
+
+
+let arrayP=[p1,p2]
+//esto ha modificado el array original esta trabajando con la referencia a memoria no una copia como haria con enteros o primitivos
+arrayP.map((valor:p)=>{valor.edad=valor.edad+1;return valor});
+console.log(arrayP);
+let arrayi=[12,13]
+//Aqui no modifica el array solo la copia
+let copiai=arrayi.map((valor:number)=>{valor=valor+1;return valor});
+console.log(copiai);
+console.log(arrayi);
+
+//La estructura de las callback es de el valor como parametro sea del mismo tipo que el del array y el return lña condicion que sea necesario
+let notas = [4,5,8.7,9,10,0, 1.5]
+notas.filter((v:number)=>{return v>=5})
+
+
+    
+    
 
