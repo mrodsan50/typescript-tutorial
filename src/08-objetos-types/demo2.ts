@@ -24,3 +24,10 @@ type Desarrolladores={nuss:String,categoria:Categoria,salario:number}//Solo acep
 type DNI=`${string}-${string}`//tambien puede hacerse con filtro A|B etc
 let dni:DNI="01111111-l"
 type tURL = `https${'s'|''}://${string}.${'es'|'com'}`
+
+type Direccion = {calle:string, numero: number}
+type persona = {nombre:string, apellidos:string, direccion:Direccion}
+//Desestructuracion 
+let p1 = {nombre:"Jose" ,apellidos:"Rodriauez" ,direccion: {calle:"Rancho" ,numero: 1}}
+let {nombre, apellidos} = p1
+

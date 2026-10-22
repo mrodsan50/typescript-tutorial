@@ -17,7 +17,7 @@ function puntos(equipo: string) {
   let e=liga.find((f)=>f.nombre===equipo)
   return e ? (sum = e.empatados + e.ganados * 3) : 0;
 }
+
 liga.forEach((e) => console.log(e.nombre, " - ", puntos(e.nombre)));
 c.sort((a,b)=>puntos(b.nombre)-puntos(a.nombre));
 console.log("Primer equipo del array original: ",liga[0].nombre," | 1er ordenado: ",c[0].nombre);
-
