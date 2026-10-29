@@ -1,29 +1,53 @@
-//Ejercicio 1
-const NOMBRE_CENTRO: String = "IES Los Alcores"
-const CICLO: String = "Desarrollo de Aplicaciones Multiplataforma"
-const PLAZAS: number = 30
-let matriculados: number = 26
-console.log(NOMBRE_CENTRO + "-" + CICLO);
-console.log("Matriculados: " + matriculados + " de " + PLAZAS);
-console.log("Plazas libres: " + (PLAZAS - matriculados));
-matriculados += 2;
-console.log("Tras dos altas -> " + matriculados + ", " + (PLAZAS - matriculados));
-console.log("Ocupacion: " + (((matriculados / PLAZAS)) * 100).toFixed(1));
-console.log(PLAZAS <= matriculados ? "No quedan plazas" : "Quedan plazas");
+//Ejercicio12
 
-type grupo = { nombre: String, tutor: String }
+class Expediente {
+    constructor(readonly numero: number, public nombre: string, private notas: number[] = []) { }
+    private static creados: number = 0;
+    static registrar(nombre: string) {
+        this.creados++;
+        return new Expediente((1000 + this.creados), nombre);
+    }
 
-const clase: grupo = { nombre: "DAM2", tutor: "Ana Serrano" };
-clase.nombre="Jose Antonio Rodriguez ";
-console.log("Grupo" + clase.nombre + ", tutor: " + clase.tutor);
+    static get total() {
+        return this.creados;
+    }
+    anadirNota(nota: number) {
+        nota > 10 || nota < 0 ? new Error((`Nota fuera de rango: ${nota}`) ): this.notas.push(nota);
 
-//clase={nombre:"DAM2",tutor:"Ana Serrano"}; No se puede cambiar el objeto
+    }
+    get media():number {
+        let m: number = 0;
+        this.notas.forEach((n: number) => (m += n))
+        m /= this.notas.length;
+        return m === 0 ? 0 : m;
 
-//Ejercicio 2
+    }
 
-let nota_Practica:number|null=8.5;
-let nota_Examen:number|null=null;
+    get calificacion():string {
+        return this.media >= 9 ?"Sobresaliente" : this.media >= 7 ? "Notable" : this.media >= 5 ? "suficiente" : "insuficiente";
 
-console.log(`Examen ${nota_Examen??"sin corregir"}`);
+
+    }
+    get historial():number[] {
+        return [...this.notas];
+    }
+
+}
+
+const ana:Expediente=Expediente.registrar("Ana Serrano");
+const luis:Expediente=Expediente.registrar("Luis Gil");
+ana.anadirNota(8);
+ana.anadirNota(9.5);
+ana.anadirNota(7);
+luis.anadirNota(4);
+
+console.log(`Espediente ${ana.numero} - ${ana.nombre} \nNotas: ${ana.historial.join(", ")}\nMedia ${ana.media.toFixed(2)} ${ana.calificacion}`);
+console.log(`Espediente ${luis.numero} - ${luis.nombre} : ${luis.calificacion}`);
+
+
+
+
+
+
 
 
