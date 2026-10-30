@@ -24,7 +24,7 @@ class Expediente {
     }
 
     get calificacion():string {
-        return this.media >= 9 ?"Sobresaliente" : this.media >= 7 ? "Notable" : this.media >= 5 ? "suficiente" : "insuficiente";
+        return this.media >= 9 ?"Sobresaliente" : this.media >= 7 ? "Notable" : this.media >= 5 ? " suficiente" : "insuficiente";
 
 
     }
