@@ -29,5 +29,13 @@ type Direccion = {calle:string, numero: number}
 type persona = {nombre:string, apellidos:string, direccion:Direccion}
 //Desestructuracion 
 let p1 = {nombre:"Jose" ,apellidos:"Rodriauez" ,direccion: {calle:"Rancho" ,numero: 1}}
+type bloque=`${number}${number}${number}`;
+type ntel=`${bloque} ${bloque} ${bloque}`;
+let probar:ntel="123 123 123";
+let num:number=Number(probar.replaceAll(" ",""));
+
+console.log(num);
+
+
 let {nombre, apellidos} = p1
 
